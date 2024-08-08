@@ -1,0 +1,37 @@
+@page
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@functions
+{
+    double perimetro;
+    double area;
+    double volumen;
+
+    public void OnPost(double ejeMayor, double ejeMenor, double altura)
+    {
+        perimetro = Application.Elipse.Perimetro(ejeMayor, ejeMenor);
+        area = Application.Elipse.Area(ejeMayor, ejeMenor);
+        volumen = Application.PrismaElipse.Volumen(area, altura);
+    }
+}
+
+<h1>
+    Calculadora de Área, Perímetro y Volumen del Prisma con Base Elíptica
+</h1>
+
+<form method="Post">
+    Dame el eje mayor (a): <input type="number" step="any" name="ejeMayor">
+    <br>
+    Dame el eje menor (b): <input type="number" step="any" name="ejeMenor">
+    <br>
+    Dame la altura: <input type="number" step="any" name="altura">
+    <br>
+    <button type="submit">Calcular</button>
+</form>
+
+<p>
+    Área: @(area) cm²<br>
+    Perímetro: @(perimetro) cm<br>
+    Volumen: @(volumen) cm³
+</p>
